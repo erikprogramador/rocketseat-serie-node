@@ -4,11 +4,10 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 const User = require('../models/user')
-const authConfig = require('../config/auth.json')
 const authMiddleware = require('../middlewares/auth')
 
 function generateToken(params = {}) {
-  return jwt.sign(params, authConfig.secret, {
+  return jwt.sign(params, process.env.APP_KEY, {
     expiresIn: 86400,
   })
 }
